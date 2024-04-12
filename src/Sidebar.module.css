@@ -1,0 +1,63 @@
+/* Sidebar.module.css */
+.sidebar {
+    background-color: #ffffff; /* Dark blue sidebar */
+    color: #0c0c0c;
+    width: 220px;
+    height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
+}
+
+.sidebar li {
+    margin-bottom: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar li.active {
+    font-weight: bold;
+    border-left: 3px solid #bc0e0e; /* White border for active item */
+    padding-left: 10px;
+}
+
+.sidebar .submenu {
+    position: relative;
+}
+
+.sidebar .submenu ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #ffffff; /* Same background color as sidebar */
+    border: 1px solid #c4c9e8; /* Add border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow */
+    padding: 10px;
+    z-index: 1; /* Ensure dropdown is above other elements */
+}
+
+.sidebar .submenu ul li {
+    margin-bottom: 5px;
+}
+
+.sidebar .nested {
+    padding-left: 15px;
+}
+
+.sidebar li + li {
+    margin-top: 10px;
+}
+
+.sidebar li:hover {
+    background-color: #e3e3e3; /* Light gray background on hover */
+}
+
+.sidebar li:hover .submenu ul {
+    display: block; /* Display dropdown when hovering over parent li */
+}

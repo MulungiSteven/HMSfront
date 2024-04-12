@@ -1,0 +1,20 @@
+/* Patients.module.css */
+.patients {
+    padding: 20px;
+}
+
+.patients table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patients th,
+.patients td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.patients th {
+    background-color: #f2f2f2;
+}
