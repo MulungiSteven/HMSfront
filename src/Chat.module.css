@@ -1,0 +1,29 @@
+/* Chat.module.css */
+.chat {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatWindow {
+    flex: 1;
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.messagePatient {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.messageDoctor {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-align: right;
+}
