@@ -4,21 +4,26 @@
     margin-top: 20px;
 }
 
-.totalPatientsList {
-    list-style-type: none;
-    padding: 0;
+.patientTable {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.totalPatientsList li {
-    padding: 15px;
-    border-bottom: 1px solid #eee; /* Lighten the border color */
-    transition: background-color 0.3s; /* Add transition effect */
+.patientTable th,
+.patientTable td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd; /* Lighten the border color */
+    text-align: left;
 }
 
-.totalPatientsList li:hover {
+.patientTable th {
+    background-color: #f2f2f2; /* Light background color for table headers */
+}
+
+.patientTable tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light background color for even rows */
+}
+
+.patientTable tr:hover {
     background-color: #f5f5f5; /* Light background color on hover */
-}
-
-.totalPatientsList li:last-child {
-    border-bottom: none;
 }

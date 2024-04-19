@@ -10,6 +10,9 @@ import Invoices from './Invoices';
 import AddPatients from './AddPatients'; // New component for adding patients
 import TotalPatients from './TotalPatients'; // New component for displaying total patients
 import styles from './App.module.css';
+import AddInvoice from "./AddInvoice";
+import Pending from "./Pending";
+import Complete from "./Complete";
 
 const App = () => {
     const [selectedModule, setSelectedModule] = useState('dashboard'); // Manage selected module
@@ -37,6 +40,9 @@ const App = () => {
                     {selectedModule === 'appointments' && <Appointments />}
                     {selectedModule === 'chat' && <Chat />}
                     {selectedModule === 'invoices' && <Invoices />}
+                    {selectedModule === 'pending' && <Pending />}
+                    {selectedModule === 'complete' && <Complete />}
+                    {selectedModule === 'addInvoice' && <AddInvoice />}
                     {selectedModule === 'addPatients' && <AddPatients onSubmit={handleAddPatient} />} {/* Render AddPatients component when selectedModule is 'addPatients' */}
                     {selectedModule === 'totalPatients' && <TotalPatients patients={patients} />} {/* Render TotalPatients component when selectedModule is 'totalPatients' */}
                 </div>
