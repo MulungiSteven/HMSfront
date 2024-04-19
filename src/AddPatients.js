@@ -7,26 +7,24 @@ const AddPatients = () => {
         patientId: '',
         name: '',
         dateOfBirth: '',
-        contact: '',
-        medicalRecord: ''
+        contact: ''
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.post('/health-hub/patients/add-patient', formData);
+            await axios.post('http://localhost:8080/health-hub/patients/add-patient', formData);
             alert('Patient added successfully');
             // Optionally, you can reset the form after successful submission
             setFormData({
                 patientId: '',
                 name: '',
                 dateOfBirth: '',
-                contact: '',
-                medicalRecord: ''
+                contact: ''
             });
         } catch (error) {
-            console.error('Error adding patient:', error);
+            console.log('Error adding patient:', error);
             alert('Error adding patient');
         }
     };
@@ -42,7 +40,6 @@ const AddPatients = () => {
                 <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
                 <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} placeholder="Date of Birth" required />
                 <input type="text" name="contact" value={formData.contact} onChange={handleChange} placeholder="Contact" required />
-                <textarea name="medicalRecord" value={formData.medicalRecord} onChange={handleChange} placeholder="Medical Record" required />
                 <button type="submit">Add Patient</button>
             </form>
         </div>

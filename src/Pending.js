@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import styles from './Invoices.module.css';
 
-const Invoices = () => {
+const Pending = () => {
     const [invoices, setInvoices] = useState([]);
 
     useEffect(() => {
         // Fetch invoices from the backend when the component mounts
         const fetchInvoices = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/health-hub/transactions/all');
+                const response = await axios.get('http://localhost:8080/health-hub/transactions/pending');
                 setInvoices(response.data);
             } catch (error) {
                 console.error('Error fetching invoices:', error);
@@ -47,4 +47,4 @@ const Invoices = () => {
     );
 };
 
-export default Invoices;
+export default Pending;

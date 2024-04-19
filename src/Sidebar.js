@@ -6,8 +6,14 @@ import { faHome, faUser, faMoneyBill, faCalendarAlt, faComment, faFileInvoice, f
 const Sidebar = ({ onModuleChange, selectedModule }) => {
     const [showPatientsDropdown, setShowPatientsDropdown] = useState(false);
 
+    const [showInvoiceDropdown, setShowInvoiceDropdown] = useState(false);
+
     const togglePatientsDropdown = () => {
         setShowPatientsDropdown(!showPatientsDropdown);
+    };
+
+    const toggleInvoiceDropdown = () => {
+        setShowInvoiceDropdown(!showInvoiceDropdown);
     };
 
     return (
@@ -56,11 +62,36 @@ const Sidebar = ({ onModuleChange, selectedModule }) => {
                 >
                     <FontAwesomeIcon icon={faComment} /> Chat
                 </li>
-                <li
-                    onClick={() => onModuleChange('invoices')}
-                    className={selectedModule === 'invoices' ? styles.active : ''}
-                >
-                    <FontAwesomeIcon icon={faFileInvoice} /> Invoices
+                <li className={showInvoiceDropdown ? styles.submenuOpen : styles.submenu}>
+                    <div onClick={toggleInvoiceDropdown}>
+                        <FontAwesomeIcon icon={faFileInvoice} /> Invoice
+                    </div>
+                    <ul className={styles.nested}>
+                        <li
+                            onClick={() => onModuleChange('addInvoice')}
+                            className={selectedModule === 'addInvoice' ? styles.active : ''}
+                        >
+                            <FontAwesomeIcon icon={faPlus} /> Generate Invoice
+                        </li>
+                        <li
+                            onClick={() => onModuleChange('invoices')}
+                            className={selectedModule === 'invoices' ? styles.active : ''}
+                        >
+                            <FontAwesomeIcon icon={faListAlt} /> All Invoices
+                        </li>
+                        <li
+                            onClick={() => onModuleChange('pending')}
+                            className={selectedModule === 'pending' ? styles.active : ''}
+                        >
+                            <FontAwesomeIcon icon={faListAlt} /> Pending Transactions
+                        </li>
+                        <li
+                            onClick={() => onModuleChange('complete')}
+                            className={selectedModule === 'complete' ? styles.active : ''}
+                        >
+                            <FontAwesomeIcon icon={faListAlt} /> Complete Transactions
+                        </li>
+                    </ul>
                 </li>
                 <li
                     onClick={() => onModuleChange('settings')}

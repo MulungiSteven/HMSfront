@@ -4,6 +4,7 @@ import styles from './Chat.module.css';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
 
     // Fetch messages from the backend when the component mounts
     useEffect(() => {
@@ -13,7 +14,7 @@ const Chat = () => {
     // Function to fetch messages from the backend
     const fetchMessages = async () => {
         try {
-            const response = await axios.get('/health-hub/receive-messages');
+            const response = await axios.get('http://localhost:8080/health-hub/receive-message');
             setMessages(response.data);
         } catch (error) {
             console.error('Error fetching messages:', error);
@@ -21,11 +22,18 @@ const Chat = () => {
     };
 
     // Function to send a message
-    const sendMessage = async (messageContent, sender) => {
+    const sendMessage = async (e) => {
+        e.preventDefault();
         try {
-            await axios.post('/health-hub/sendMessage', { messageContent, sender });
-            // After sending the message, fetch updated messages from the backend
-            fetchMessages();
+            // Send the message to the backend
+            await axios.post('http://localhost:8080/health-hub/sendMessage', {
+                content: newMessage,
+                sender: 'Patient'
+            });
+            // Append the sent message to the messages state
+            setMessages([...messages, { content: newMessage, sender: 'Patient' }]);
+            // Clear the input field
+            setNewMessage("");
         } catch (error) {
             console.error('Error sending message:', error);
         }
@@ -41,15 +49,14 @@ const Chat = () => {
                     </div>
                 ))}
             </div>
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    const messageContent = e.target.message.value;
-                    sendMessage(messageContent, 'Patient');
-                    e.target.message.value = '';
-                }}
-            >
-                <input type="text" name="message" placeholder="Type your message..." required />
+            <form onSubmit={sendMessage}>
+                <input
+                    type="text"
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    placeholder="Type your message..."
+                    required
+                />
                 <button type="submit">Send</button>
             </form>
         </div>
